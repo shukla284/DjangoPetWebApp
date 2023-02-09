@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Pet Page </title>
+</head>
+<body>
+    <h1> {{ pet.name|capfirst }} </h1>
+    <div class="pet">  
+        {% if pet.breed %} <p> {{ pet.breed }} </p> {% endif %}
+        {% if pet.age %} <p> {{ pet.age }} </p> {% endif %}
+        {% if pet.sex %} <p> {{ pet.sex }} </p> {% endif %}
+        {% if pet.species %} <p> {{ pet.species }} </p> {% endif %}
+
+        {% if pet.vaccinations.all %} 
+            <p>Vaccinations:</p>
+            <ul>
+                {% for vaccine in pet.vaccinations.all %}
+                    <li> {{ vaccine.name }} </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <p> Submitted by {{ pet.submitter }} </p>
+        <p> Submitted On {{ pet.submitted_date|date:"M d Y" }} </p>
+    </div>
+</body>
+</html>
